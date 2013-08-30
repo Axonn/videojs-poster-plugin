@@ -1,11 +1,13 @@
 /// <reference path="../src/definitions/Jasmine.d.ts" />
 /// <reference path="../src/definitions/JQuery.d.ts" />
-/// <reference path="../src/ts/DurationSetEmitter.ts" />
-/// <reference path="../src/ts/IPlayer.ts" />
+/// <reference path="../src/ts/PosterRepository.ts" />
+///<reference path='../bower_components/videojs-plugin-components/vjsplugincomponents.d.ts'/>
 /// <chutzpah_reference path="../../../lib/JQuery/jquery-1.9.1.js" />
 
-describe("durationObserver", () => {
+describe("posterPlugin", () => {
     var player,
+        layerRepository,
+        createFromSpecSpy,
         playerEventSpy,
         playerEventOffSpy,
         playerTriggerSpy,
@@ -58,30 +60,28 @@ describe("durationObserver", () => {
             sources: jasmine.createSpy("player.sources"),
             options: jasmine.createSpy("player.options"),
         };
-    });
 
-    it("Calls duration set when duration changes", () => {  
-        durationSpy.andReturn();
+        createFromSpecSpy = jasmine.createSpy('layerRepo.createFromSpecification');
 
-        var sut = new VjsPlugin.DurationSetEmitter(player);
-        var onFunction = curriedGetFunctionFromSpy(playerEventSpy)("durationchange");
-        var offFunction = curriedGetFunctionFromSpy(playerEventOffSpy)("durationchange");
-
-        onFunction();
-
-        expect(playerTriggerSpy).wasNotCalled();
+        layerRepository = {
+            remove: jasmine.createSpy('layerRepo.remove'),
+            getEntity: jasmine.createSpy('layerRepo.getEntity'),
+            create: jasmine.createSpy('layerRepo.create'),
+            trigger: jasmine.createSpy('layerRepo.trigger'),
+            on: jasmine.createSpy('layerRepo.on'),
+            toList: jasmine.createSpy('layerRepo.toList'),
+            update: jasmine.createSpy('layerRepo.update'),
+            createFromSpecification: createFromSpecSpy,
+            clear: jasmine.createSpy('layerRepo.clear'),
+        }
     });
 
     it("Calls duration set when duration changes", () => {
-        durationSpy.andReturn(3);
+        var posterSpecification = { events: {} };
 
-        var sut = new VjsPlugin.DurationSetEmitter(player);
-        var onFunction = curriedGetFunctionFromSpy(playerEventSpy)("durationchange");
-       
-        onFunction();
-
-        var offFunction = curriedGetFunctionFromSpy(playerEventOffSpy)("durationchange");
-
-        expect(playerTriggerSpy).toHaveBeenCalledWith("durationset");
+        var sut = new Poster.PosterRepository(layerRepository, player);
+        sut.createFromSpecification(posterSpecification);
+        expect(createFromSpecSpy).toHaveBeenCalledWith(posterSpecification);
+        expect(playerEventSpy).toHaveBeenCalled();
     });
 });

@@ -14,7 +14,10 @@ module.exports = function (grunt) {
 		  src: "build/js/vjsposterplugin.js",
 		  options: {
 			specs: "build/test/vjsposterplugintests.js",
-			vendor: "components/jquery/jquery.min.js",
+			vendor: [ 
+			  "bower_components/jquery/jquery.min.js",
+			  "bower_components/videojs-plugin-components/vjsplugincomponents.js"
+			]
 		  }
 	  }
     },
