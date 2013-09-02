@@ -5,15 +5,15 @@ before_script:
 - bower install
 env:
   global:
-  - secure: EyQ+4g03UKWmWZCjWsVpsj1FgYI8YN2ocRBzAwAkgPhN0BAx8BrOvlbKVyHWN/jArNmP/RyTXDeNEb5H/nszgiwptV1K4R3Cvl2Rwy73OUiYMlI5P3BbCdiDcJXwl7YakmO3g+5UEaRjVcXaLq3/awc9h5gdgRA5CrS/CVO/LeM=
+  - secure: BKyCCzE1/oLsHp+EDHMy37uBI7XwKVODiCL0XzI6u8gjQAyoHqwo7SrdRIZiCGuS4CVWDQ740Z3tDtW8ig6gksXjVX3m68oL81oHXo8f7yOxGkuyJ6zJsrEBwnOgA+q2DjB+4xXaoj5D4P5QaOfku55fgtOkmBkV+0w5tNezy2k=
   - GH_OWNER: Axonn
   - GH_PROJECT_NAME: videojs-poster-plugin
 after_success:
 - if git checkout master; then git checkout -b master; fi
 - cp build/js/vjsposterplugin.js vjsposterplugin.js
-- cp build/js/vjsposterplugin.d.ts vjsposterplugin.d.ts 
+- cp build/js/vjsposterplugin.d.ts vjsposterplugin.d.ts
 - git add -f vjsposterplugin.js
-- git add -f vjsposterplugin.d.ts 
+- git add -f vjsposterplugin.d.ts
 - git config user.name "travis-ci"
 - git config user.email "corwin.tomkinson@adfero.co.uk"
 - git commit -am "add build files to master [ci skip]"
