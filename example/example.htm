@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" href="../bower_components/video.js/video-js.css" type="text/css" />
+	<link rel="stylesheet" href="../style/poster.css" type="text/css" />
+
+		<script src="../bower_components/dustjs-linkedin/dist/dust-core-2.0.0.min.js" type="text/javascript"></script>
+		<script src="../bower_components/video.js/video.js" type="text/javascript"></script>
+		<script src="../bower_components/videojs-plugin-components/vjsplugincomponents.js" type="text/javascript"></script>
+	    <script src="../bower_components/jquery/jquery.js" type="text/javascript"></script>
+        <script src="../vjsposterplugin.js" type="text/javascript"></script>
+		<script src="TestTemplate.js" type="text/javascript"></script>
+
+	
+	</head>
+<body>
+    <h1>VideoJS w/ Poster</h1>
+
+    <video id="vid1" class="video-js vjs-default-skin" controls preload="auto" width="640" height="264"
+        poster="http://video-js.zencoder.com/oceans-clip.png">
+        <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' data-resolution="240p">		
+        <source src="http://video-js.zencoder.com/oceans-clip.mp4" type="video/mp4" data-resolution="240p">
+        <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' data-resolution="480p">
+
+        <source src="http://people.mozilla.com/~cpearce/Patent_Absurdity_LQ_350kbit.ogv" type='video/ogg' data-resolution="480p">
+        <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' data-resolution="240p">
+        <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' data-resolution="480p">
+    </video>
+    <div id="content">
+	        <script type="text/javascript">
+            var video1 = _V_("vid1",
+                {
+                'plugins': {
+                    'posterPlugin': {
+                        posters: [{
+                            template: {
+                                name: "test"
+                            },
+                            model: {
+                                class: "vjs-poster-text",
+                                name: "The Birds and the Sea"
+                            },
+							events: {
+								"onCreate": [function(args){
+									args.poster.container.click(function(){
+										args.player.play();
+									});
+								}]
+							}
+                        },
+						{
+                            template: {
+                                name: "test"
+                            },
+                            model: {
+                                class: "vjs-poster-overlay",
+                                name: ""
+                            },
+							events: {
+								"onCreate": [function(args){
+									args.poster.container.click(function(){
+										args.player.play();
+									});
+								}]
+							}
+                        }
+						]
+                    },
+                }
+                });
+    </script>
+	</div>
+
+
+
+
+</body>
+</html>

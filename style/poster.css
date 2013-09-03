@@ -4,6 +4,7 @@
     height: 100%;
     position: absolute;
     opacity: 1;
+	top:0;
 }
 
 div.vjsInvisible {
@@ -11,15 +12,42 @@ div.vjsInvisible {
     opacity: 0 !important;
 }
 
-div.vjs-poster {
-    position: relative;
-    z-index: 3;
-    margin-left: auto;
-    margin-right: auto;
-    width: 20em;
-    text-align: center;
-    font-size: 1.5em;
-    color: white;
-    background: rgb(128, 128, 128);
-    background: rgba(128, 128, 128, 0.8);
+div.vjs-poster-overlay {
+    height: 100%;
+	width: 100&;
+	position: relative;
+	z-index: 2;
+	opacity: 0;
+			-webkit-transition: opacity 0.2s ease-in-out;
+	  -moz-transition: opacity 0.2s ease-in-out;
+	  -ms-transition: opacity 0.2s ease-in-out;
+	  -o-transition: opacity 0.2s ease-in-out;
+	  transition: opacity 0.2s ease-in-out;
+	-webkit-box-shadow: inset 0 0 250px rgba(255,255,255,0.5);
+    box-shadow: inset 0 0 250px rgba(255,255,255,0.5);
+	cursor:pointer;
+}
+
+div.vjs-poster-text {
+	position: absolute;
+	font-size:3em;
+	font-family:verdana;
+	bottom:1em;
+	padding:0 0.4em 0.1em;
+	color:#f1f1f1;
+	right:0;
+	background:#407699;
+	z-index: 2;
+	-webkit-transition: opacity 0.2s ease-in-out;
+	-moz-transition: opacity 0.2s ease-in-out;
+	-ms-transition: opacity 0.2s ease-in-out;
+	-o-transition: opacity 0.2s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
+	-webkit-box-shadow: inset 0 0 250px rgba(255,255,255,0.4);
+    box-shadow: inset 0 0 250px rgba(255,255,255,0.4);
+	cursor:pointer;
+}
+
+div.vjs-poster-overlay:hover {
+    opacity:1;
 }
